@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Skierowanie do laboratorium - gra komputerowa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 700px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fafafa;
+      border: 1px solid #333;
+      border-radius: 8px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input[type=text], input[type=date], select, textarea {
+      width: 100%;
+      padding: 6px 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+      font-size: 14px;
+      border-radius: 4px;
+      border: 1px solid #888;
+      font-family: Arial, sans-serif;
+    }
+    textarea {
+      min-height: 70px;
+      resize: vertical;
+    }
+    button {
+      margin-top: 25px;
+      width: 100%;
+      font-size: 16px;
+      padding: 12px;
+      background: #1976d2;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #115293;
+    }
+    .section {
+      background: white;
+      padding: 15px 20px;
+      margin-top: 15px;
+      border-radius: 6px;
+      border: 1px solid #bbb;
+    }
+
+<style>
+  #consent-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+  #consent-box {
+    background: #222;
+    padding: 30px;
+    max-width: 500px;
+    border-radius: 10px;
+    text-align: center;
+  }
+  #consent-box button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background: #28a745;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+  }
+</style>
+<script>
+  function acceptConsent() {
+    document.getElementById('consent-overlay').style.display = 'none';
+  }
+</script>
+
+<style>
+  #consent-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+  #consent-box {
+    background: #222;
+    padding: 30px;
+    max-width: 500px;
+    border-radius: 10px;
+    text-align: center;
+  }
+  #consent-box button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background: #28a745;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+  }
+</style>
+<script>
+  function acceptConsent() {
+    document.getElementById('consent-overlay').style.display = 'none';
+  }
+</script>
+
+
+  </style>
+</head>
+<body>
+
+<div id="consent-overlay">
+  <div id="consent-box">
+    <p>Wchodząc na stronę przyjmuję do wiadomości, iż strona internetowa dotyczy tylko odgrywania roli w grze komputerowej i nie ma nic wspólnego z realnym światem.</p>
+    <button onclick="acceptConsent()">Akceptuj</button>
+  </div>
+</div>
+
+<h1>UWAGA: Ta strona została stworzona wyłącznie na potrzeby odgrywania roli w grze komputerowej i nie ma nic wspólnego z prawdziwą dokumentacją medyczną.</h1>
+<h1>Skierowanie do laboratorium (gra komputerowa)</h1>
+
+<form id="formSkierowanie" autocomplete="off">
+
+  <div class="section">
+    <label for="badanieSelect">Skierowanie do/na</label>
+    <select id="badanieSelect" name="badanieSelect" class="select2" required>
+      <option value="">-- wybierz badanie --</option>
+      <option>RTG prawej dłoni</option>
+      <option>USG jamy brzusznej</option>
+      <option>MRI głowy</option>
+      <option>Gastroskopia</option>
+      <option>Inne (proszę określić poniżej)</option>
+    </select>
+    <label for="badanieOther" style="margin-top:10px;">Inne badanie (opcjonalne)</label>
+    <input type="text" id="badanieOther" name="badanieOther" placeholder="Wpisz inne badanie" />
+  </div>
+
+  <div class="section">
+    <label for="dataWystawienia">Data wystawienia</label>
+    <input type="date" id="dataWystawienia" name="dataWystawienia" required />
+  </div>
+
+  <div class="section">
+    <label for="priorytetSelect">Priorytet</label>
+    <select id="priorytetSelect" name="priorytetSelect" required>
+      <option value="">-- wybierz priorytet --</option>
+      <option value="Nagłe">Nagłe</option>
+      <option value="CITO">CITO</option>
+      <option value="Stabilny">Stabilny</option>
+    </select>
+  </div>
+
+  <div class="section">
+    <label for="patientName">Imię i nazwisko pacjenta</label>
+    <input type="text" id="patientName" name="patientName" placeholder="Jan Kowalski" required />
+    <label for="patientPESEL">PESEL</label>
+    <input type="text" id="patientPESEL" name="patientPESEL" placeholder="88010112345" required />
+    <label for="patientBirthDate">Data urodzenia</label>
+    <input type="date" id="patientBirthDate" name="patientBirthDate" required />
+    <label for="patientCity">Miejsce zamieszkania</label>
+    <select id="patientCity" name="patientCity" required>
+      <option value="">-- wybierz miasto --</option>
+      <option>Poznań</option>
+      <option>Warszawa</option>
+      <option>Kraków</option>
+      <option>Łódź</option>
+      <option>Wrocław</option>
+      <option>Gdańsk</option>
+      <option>Szczecin</option>
+      <option>Inne</option>
+    </select>
+    <input type="text" id="patientCityOther" placeholder="Wpisz inne miasto" style="display:none; margin-top:5px;" />
+  </div>
+
+  <div class="section">
+    <label for="doctorName">Lekarz (wystawiający)</label>
+    <input type="text" id="doctorName" name="doctorName" placeholder="dr Anna Nowak" required />
+    <label for="doctorSpecialization">Specjalizacja</label>
+    <input type="text" id="doctorSpecialization" name="doctorSpecialization" placeholder="np. Chirurgia" />
+    <label for="doctorPhone">Numer telefonu</label>
+    <input type="text" id="doctorPhone" name="doctorPhone" placeholder="np. 123-456-789" />
+  </div>
+
+  <div class="section">
+    <label for="rozpoznanieSelect">Rozpoznanie / podejrzewane rozpoznanie</label>
+    <select id="rozpoznanieSelect" name="rozpoznanieSelect" required>
+      <option value="">-- wybierz rozpoznanie --</option>
+      <option>Złamanie prawej dłoni</option>
+      <option>Zapalenie płuc</option>
+      <option>Cukrzyca typu 2</option>
+      <option>Inne (proszę określić poniżej)</option>
+    </select>
+    <label for="rozpoznanieOther" style="margin-top:10px;">Inne rozpoznanie (opcjonalne)</label>
+    <input type="text" id="rozpoznanieOther" name="rozpoznanieOther" placeholder="Wpisz inne rozpoznanie" />
+  </div>
+
+  <div class="section">
+    <label for="objawySelect">Objawy (wiele opcji)</label>
+    <select id="objawySelect" name="objawySelect" class="select2" multiple="multiple" required>
+      <option>Duszność</option>
+      <option>Ból głowy</option>
+      <option>Kaszel</option>
+      <option>Gorączka</option>
+      <option>Zmęczenie</option>
+      <option>Inne (proszę wpisać poniżej)</option>
+    </select>
+    <label for="objawyOther" style="margin-top:10px;">Inne objawy (opcjonalne)</label>
+    <input type="text" id="objawyOther" name="objawyOther" placeholder="Wpisz inne objawy" />
+  </div>
+
+  <div class="section">
+    <label for="additionalInfo">Dodatkowe informacje</label>
+    <textarea id="additionalInfo" name="additionalInfo" placeholder="Miejsce na dodatkowe informacje"></textarea>
+  </div>
+
+  <div class="section">
+    <label for="podpisLekarza">Podpis lekarza</label>
+    <textarea id="podpisLekarza" name="podpisLekarza" placeholder="Wpisz swój podpis" rows="2" required></textarea>
+  </div>
+
+  <button type="button" id="btnDownload">Pobierz jako PDF</button>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+  $(document).ready(function(){
+    $('.select2').select2({ width: '100%' });
+    $('#patientCity').on('change', function(){
+      if ($(this).val() === 'Inne') {
+        $('#patientCityOther').show().prop('required', true);
+      } else {
+        $('#patientCityOther').hide().val('').prop('required', false);
+      }
+    });
+  });
+
+  const { jsPDF } = window.jspdf;
+
+  document.getElementById('btnDownload').addEventListener('click', () => {
+    const form = document.getElementById('formSkierowanie');
+
+    const badanie = $('#badanieSelect').val();
+    const badanieOther = $('#badanieOther').val().trim();
+    const dataWyst = form.dataWystawienia.value;
+    const priorytet = form.priorytetSelect.value;
+    const patientName = form.patientName.value.trim();
+    const patientPESEL = form.patientPESEL.value.trim();
+    const patientBirthDate = form.patientBirthDate.value;
+    let patientCity = $('#patientCity').val();
+    const patientCityOther = $('#patientCityOther').val().trim();
+    if (patientCity === 'Inne' && patientCityOther) patientCity = patientCityOther;
+    const doctorName = form.doctorName.value.trim();
+    const doctorSpec = form.doctorSpecialization.value.trim();
+    const doctorPhone = form.doctorPhone.value.trim();
+    let rozpoznanie = $('#rozpoznanieSelect').val() || '';
+    const rozpoznanieOther = $('#rozpoznanieOther').val().trim();
+    if (rozpoznanie.toLowerCase().includes('inne') && rozpoznanieOther) rozpoznanie = rozpoznanieOther;
+
+    let objawyArray = $('#objawySelect').val() || [];
+    const objawyOther = $('#objawyOther').val().trim();
+    if (objawyArray.includes('Inne (proszę wpisać poniżej)') && objawyOther) {
+      objawyArray = objawyArray.filter(o => !o.toLowerCase().includes('inne'));
+      objawyArray.push(objawyOther);
+    }
+    const objawy = objawyArray.join(', ');
+    const additionalInfo = form.additionalInfo.value.trim();
+    const podpis = form.podpisLekarza.value.trim();
+
+    if (!badanie || (badanie.toLowerCase().includes('inne') && !badanieOther)) return alert('Proszę wybrać badanie lub wpisać inne.');
+    if (!dataWyst) return alert('Proszę podać datę wystawienia.');
+    if (!priorytet) return alert('Proszę wybrać priorytet.');
+    if (!patientName) return alert('Proszę podać imię i nazwisko pacjenta.');
+    if (!patientPESEL) return alert('Proszę podać PESEL.');
+    if (!patientBirthDate) return alert('Proszę podać datę urodzenia.');
+    if (!patientCity) return alert('Proszę wybrać miejsce zamieszkania.');
+    if (!doctorName) return alert('Proszę podać nazwisko lekarza.');
+    if (!rozpoznanie) return alert('Proszę wybrać lub wpisać rozpoznanie.');
+    if (!objawy) return alert('Proszę wybrać przynajmniej jeden objaw.');
+    if (!podpis) return alert('Proszę wpisać podpis lekarza.');
+
+    const pdf = new jsPDF({ unit: 'pt', format: 'a4' });
+
+    const lm = 40;
+    let y = 40;
+    const lh = 18;
+    const w = 595.28;
+    const rm = w - lm;
+
+    pdf.setFontSize(16).text("E-SKIEROWANIE DO LABORATORIUM", lm, y);
+    y += 25;
+    pdf.setFontSize(10).setTextColor(180, 0, 0).text(
+      "UWAGA: Dokument do celów gry komputerowej. Nie stanowi prawdziwej dokumentacji medycznej.",
+      lm, y, { maxWidth: rm - lm }
+    );
+    y += 30;
+
+    pdf.setTextColor(0).setFontSize(12).text("Skierowanie do/na:", lm, y);
+    pdf.setFontSize(11).text(badanie, lm + 130, y); y += lh;
+    pdf.text("Inne badanie:", lm, y);
+    pdf.text(badanieOther || '-', lm + 130, y); y += lh + 10;
+    pdf.setFontSize(12).text("Data wystawienia:", lm, y);
+    pdf.setFontSize(11).text(dataWyst, lm + 130, y); y += lh;
+    pdf.setFontSize(12).text("Priorytet:", lm, y);
+    pdf.setFontSize(11).text(priorytet, lm + 130, y); y += lh + 15;
+
+    pdf.setFontSize(12).text("Dane pacjenta:", lm, y); y += lh;
+    pdf.setFontSize(11).text(`Imię i nazwisko: ${patientName}`, lm, y); y += lh;
+    pdf.text(`PESEL: ${patientPESEL}`, lm, y); y += lh;
+    pdf.text(`Data urodzenia: ${patientBirthDate}`, lm, y); y += lh;
+    pdf.text(`Miejsce zamieszkania: ${patientCity}`, lm, y); y += lh + 10;
+
+    pdf.setFontSize(12).text("Dane wystawiającego:", lm, y); y += lh;
+    pdf.setFontSize(11).text(`Lekarz: ${doctorName}`, lm, y); y += lh;
+    if (doctorSpec) { pdf.text(`Specjalizacja: ${doctorSpec}`, lm, y); y += lh; }
+    if (doctorPhone) { pdf.text(`Telefon: ${doctorPhone}`, lm, y); y += lh; }
+    y += 10;
+
+    pdf.setFontSize(12).text("Informacje o stanie pacjenta:", lm, y); y += lh;
+    pdf.setFontSize(11).text("Rozpoznanie/podejrzewane rozpoznanie:", lm, y); y += lh;
+    pdf.text(rozpoznanie, lm + 10, y); y += lh + 7;
+
+    pdf.text("Objawy:", lm, y); y += lh;
+    const lines = pdf.splitTextToSize(objawy, rm - lm - 20);
+    lines.forEach(line => { pdf.text(line.trim(), lm + 10, y); y += lh; });
+    y += 10;
+
+    pdf.text("Dodatkowe informacje:", lm, y); y += lh;
+    const infoLines = pdf.splitTextToSize(additionalInfo || '-', rm - lm - 20);
+    pdf.text(infoLines, lm + 10, y); y += infoLines.length * lh + 15;
+
+    pdf.setFontSize(12).text("Podpis lekarza:", lm, y); y += lh;
+    const podpisLines = pdf.splitTextToSize(podpis, rm - lm - 20);
+    pdf.text(podpisLines, lm + 10, y); y += podpisLines.length * lh + 10;
+
+    pdf.setLineWidth(0.5).rect(30, 30, w - 60, y - 20);
+
+    pdf.save(`skierowanie_${patientName.replace(/\s+/g, '_').toLowerCase() || 'dokument'}.pdf`);
+  });
+</script>
+
+</body>
+</html>
